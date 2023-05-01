@@ -1,16 +1,15 @@
 package com.ensias.healthcareapp.adapter;
 
-import android.app.AlertDialog;
 import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ensias.healthcareapp.ProfilePatientActivity;
 import com.ensias.healthcareapp.R;
 import com.ensias.healthcareapp.model.ApointementInformation;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -22,19 +21,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.concurrent.Executor;
+import java.util.HashMap;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
-import dmax.dialog.SpotsDialog;
 
 public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<ApointementInformation, PatientAppointmentsAdapter.PatientAppointmentsHolder> {
     StorageReference pathReference;
@@ -49,6 +45,9 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Apointe
 
     @Override
     protected void onBindViewHolder(@NonNull PatientAppointmentsHolder patientAppointmentsHolder, int position, @NonNull final ApointementInformation apointementInformation) {
+
+        String documentId = getSnapshots().getSnapshot(position).getId();
+
         patientAppointmentsHolder.dateAppointement.setText(apointementInformation.getTime());
         patientAppointmentsHolder.patientName.setText(apointementInformation.getDoctorName());
         patientAppointmentsHolder.appointementType.setText(apointementInformation.getApointementType());
@@ -99,6 +98,34 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Apointe
         } else {
             patientAppointmentsHolder.type.setTextColor(Color.parseColor("#eb3b5a"));
         }
+
+        patientAppointmentsHolder.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                String currUser = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+                DocumentReference docRef = db.collection("Patient").document(currUser).collection("calendar").document(documentId);
+
+//                DocumentReference docRef = db.collection("Patient").document(currUser).collection("calendar");
+
+                // Update the 'type' field from 'accepted' to 'cancelled'
+                Map<String, Object> updates = new HashMap<>();
+                updates.put("type", "cancelled");
+                docRef.update(updates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            // The update was successful, perform any additional actions here
+                            // ...
+                        } else {
+                            // Handle the error here
+                            Exception e = task.getException();
+                            // ...
+                        }
+                    }
+                });
+            }
+        });
     }
 
     @NonNull
@@ -117,6 +144,7 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Apointe
         TextView phone;
         ImageView image;
 
+        Button btnCancel;
         public PatientAppointmentsHolder(@NonNull View itemView) {
             super(itemView);
             dateAppointement = itemView.findViewById(R.id.appointement_date);
@@ -125,6 +153,7 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Apointe
             type = itemView.findViewById(R.id.type);
             phone = itemView.findViewById(R.id.patient_phone);
             image = itemView.findViewById(R.id.patient_image);
+            btnCancel = itemView.findViewById(R.id.btnCancel);
         }
     }
 }

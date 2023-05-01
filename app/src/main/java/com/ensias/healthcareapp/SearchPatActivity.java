@@ -97,7 +97,7 @@ public class SearchPatActivity extends AppCompatActivity {
 
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        searchView.setQueryHint(Html.fromHtml("<font color = #000000>" + "Search patient" + "</font>"));
+        searchView.setQueryHint(Html.fromHtml("<font color = #000000>" + "Search Doctor" + "</font>"));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -122,32 +122,32 @@ public class SearchPatActivity extends AppCompatActivity {
                 return true;
             case R.id.option_general:
                 DoctorAdapterFiltred.specialiteSearch = true;
-                adapter.getFilter().filter("Médecin général");
+                adapter.getFilter().filter("BAMS");
                 return true;
             case R.id.option_Dentiste:
                 DoctorAdapterFiltred.specialiteSearch = true;
-                adapter.getFilter().filter("Dentiste");
+                adapter.getFilter().filter("Dentist");
                 return true;
             case R.id.option_Ophtalmologue:
                 DoctorAdapterFiltred.specialiteSearch = true;
-                adapter.getFilter().filter("Ophtalmologue");
+                adapter.getFilter().filter("Dermatologist");
                 return true;
             case R.id.option_ORL:
                 DoctorAdapterFiltred.specialiteSearch = true;
-                adapter.getFilter().filter("ORL");
+                adapter.getFilter().filter("Cardiologist");
                 return true;
-            case R.id.option_Pédiatre:
-                DoctorAdapterFiltred.specialiteSearch = true;
-                adapter.getFilter().filter("Pédiatre");
-                return true;
-            case R.id.option_Radiologue:
-                DoctorAdapterFiltred.specialiteSearch = true;
-                adapter.getFilter().filter("Radiologue");
-                return true;
-            case R.id.option_Rhumatologue:
-                DoctorAdapterFiltred.specialiteSearch = true;
-                adapter.getFilter().filter("Rhumatologue");
-                return true;
+//            case R.id.option_Pédiatre:
+//                DoctorAdapterFiltred.specialiteSearch = true;
+//                adapter.getFilter().filter("Pédiatre");
+//                return true;
+//            case R.id.option_Radiologue:
+//                DoctorAdapterFiltred.specialiteSearch = true;
+//                adapter.getFilter().filter("Radiologue");
+//                return true;
+//            case R.id.option_Rhumatologue:
+//                DoctorAdapterFiltred.specialiteSearch = true;
+//                adapter.getFilter().filter("Rhumatologue");
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

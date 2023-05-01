@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="95dp"
+        android:layout_height="150dp"
         >
 
         <TextView
@@ -95,10 +95,12 @@
             android:layout_height="65dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="14dp"
             android:layout_marginLeft="14dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginBottom="47dp"
             android:foregroundGravity="center"
             app:srcCompat="@drawable/ic_anon_user_48dp" />
 
@@ -117,6 +119,23 @@
             android:textColor="#22BE87"
             android:textSize="14sp" />
 
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appointement_date"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="161dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="162dp"
+            android:background="@drawable/button_radius_accent_color"
+            android:fontFamily="@font/roboto_light"
+            android:text="Cancel"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            tools:ignore="UnknownId" />
 
     </RelativeLayout>
+
 </androidx.cardview.widget.CardView>

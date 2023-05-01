@@ -21,32 +21,32 @@
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/option_general"
-                android:title="général"
+                android:title="General"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/option_Dentiste"
-                android:title="Dentiste"
+                android:title="Dentist"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/option_ORL"
-                android:title="ORL"
+                android:title="Cardiologist"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/option_Ophtalmologue"
-                android:title="Ophtalmologue"
+                android:title="Dermatologist"
                 app:showAsAction="ifRoom" />
-            <item
-                android:id="@+id/option_Pédiatre"
-                android:title="Pédiatre"
-                app:showAsAction="ifRoom" />
-            <item
-                android:id="@+id/option_Radiologue"
-                android:title="Radiologue"
-                app:showAsAction="ifRoom" />
-            <item
-                android:id="@+id/option_Rhumatologue"
-                android:title="Rhumatologue"
-                app:showAsAction="ifRoom" />
+<!--            <item-->
+<!--                android:id="@+id/option_Pédiatre"-->
+<!--                android:title="Pédiatre"-->
+<!--                app:showAsAction="ifRoom" />-->
+<!--            <item-->
+<!--                android:id="@+id/option_Radiologue"-->
+<!--                android:title="Radiologue"-->
+<!--                app:showAsAction="ifRoom" />-->
+<!--            <item-->
+<!--                android:id="@+id/option_Rhumatologue"-->
+<!--                android:title="Rhumatologue"-->
+<!--                app:showAsAction="ifRoom" />-->
 
         </menu>
 

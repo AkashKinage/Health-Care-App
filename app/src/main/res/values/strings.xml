@@ -61,6 +61,7 @@
 
     <string-array name="specialite_spinner">
         <item>Dentist</item>
+        <item>BAMS</item>
         <item>Allergist/Immunologist</item>
         <item>Anesthesiologist</item>
         <item>Cardiologist</item>
